@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGa OS</title>
+<meta name="description" content="A virtual desktop for children, in the style of Windows 95. Runs as a normal Java program on Linux, Windows, macOS and Raspberry Pi.">
+<meta property="og:title" content="NoGa OS">
+<meta property="og:description" content="A virtual desktop for children, in the style of Windows 95.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<style>
+    :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #1b1b1b;
+            --text: #e8e8e8;
+            --muted: #a5a5a5;
+            --border: #3d3d3d;
+            --panel: #262626;
+            --link: #7fb2ec;
+            --accent: #37c2b0;
+            --accent-text: #08211e;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+        }
+    }
+
+    :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    /* Matched to the screenshot's own width, so the image sets the column
+       instead of being squeezed into it. */
+    .wrap { max-width: 800px; margin: 0 auto; }
+
+    .head img { display: block; margin-bottom: 10px; }
+
+    h1 { margin: 0 0 12px; font-size: 28px; }
+
+    h2 { margin: 32px 0 8px; font-size: 19px; }
+
+    p { margin: 0 0 12px; }
+
+    .download { margin: 24px 0 28px; text-align: center; }
+
+    a.button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, filter .12s ease;
+    }
+
+    a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+    a.button:active { transform: translateY(0); }
+
+    a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        a.button { transition: none; }
+        a.button:hover { transform: none; }
+    }
+
+    .download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    /* The screenshot is shown at 1:1 — scaling it to the viewport made the
+       pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+       the page body from scrolling sideways as a whole. */
+    .shot { margin: 0 0 20px; overflow-x: auto; }
+
+    .shot img {
+        display: block;
+        border: 1px solid var(--border);
+        image-rendering: pixelated;
+    }
+
+    h3 { margin: 20px 0 6px; font-size: 16px; }
+
+    h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+    .changelog { margin: 0 0 12px; padding-left: 22px; }
+
+    .changelog li { margin: 0 0 4px; }
+
+    code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    pre {
+        margin: 0 0 12px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    a { color: var(--link); }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGa OS</h1>
+    </div>
+
+    <p>NoGa OS is a desktop-style app focused on helping kids learn real computer basics in a controlled space: mouse, keyboard, windows, files, and simple educational/play apps. It is intentionally not a real operating system.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/136/nogaos-136.jar" download>Download NoGa OS 136</a>
+        <div class="meta">38 MB · released 5 September 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGa OS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-136.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does. On a Raspberry Pi it can be set to start on boot with no Linux desktop reachable behind it.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 135 <span class="date">· 31 August 2026</span></h3>
+    <ul class="changelog">
+        <li>Internet Browser: right-click menu (open link, save picture, copy and paste, bigger or smaller text), file downloads with a progress window into your Downloads folder, typed words search the web, friendly pages when a site won&#x27;t open or isn&#x27;t allowed, videos can go fullscreen, PDF files open in the browser, and pages and PDFs can be printed</li>
+        <li>Internet settings: choose the search engine the browser uses</li>
+    </ul>
+    <h3>Version 134 <span class="date">· 30 August 2026</span></h3>
+    <ul class="changelog">
+        <li>New Space Slingshot game: fling a rock past planets and let gravity bend its path — crash, drift away, or hold an orbit to win; 12 levels with bonus stars</li>
+    </ul>
+    <h3>Version 133 <span class="date">· 30 August 2026</span></h3>
+    <ul class="changelog">
+        <li>New Discovery app: an illustrated &quot;how things work&quot; book where every page is a small machine to play with and a challenge to solve — three volumes on how computers work, light and colour, and sound and music</li>
+        <li>The Italian and Java Editor icons now have a proper small version, so they no longer appear oversized in the Start menu and file lists</li>
+    </ul>
+    <h3>Version 132 <span class="date">· 24 August 2026</span></h3>
+    <ul class="changelog">
+        <li>Notepad: Undo now really undoes (a word at a time), Find ignores capitals, Time/Date follows the machine&#x27;s language, typing works the moment the window opens, and the title reads &quot;Untitled&quot; from the start</li>
+        <li>WordPad: lists behave (Backspace removes a bullet, numbers recount themselves, Enter at the start of an item), copy/paste keeps formatting and WordArt, undo steps back a run at a time and keeps the toolbar in sync, documents never fall back to a computer-specific font, and several smaller fixes (Find ignores capitals, Date replaces the selection, the font and size boxes show the real value, Shift+Enter, focus on open)</li>
+        <li>Paint: floating selections and text are no longer flattened by the autosave, undo after a canvas resize works, New clears the history, the Magnifier zooms where you click, Shift constrains shapes, right-button shape previews and the colour eraser behave like Win95, and many smaller fixes</li>
+    </ul>
+    <h3>Version 131 <span class="date">· 23 August 2026</span></h3>
+    <ul class="changelog">
+        <li>Italian: the voice speaks more slowly so the words are easier to follow</li>
+    </ul>
+    <h3>Version 130 <span class="date">· 23 August 2026</span></h3>
+    <ul class="changelog">
+        <li>New Italian app: first Italian words for young children, with picture cards read aloud and a quiz that earns stars</li>
+    </ul>
+    <h3>Version 129 <span class="date">· 23 August 2026</span></h3>
+    <ul class="changelog">
+        <li>New City Driver game: drive a delivery car through a top-down city, obeying traffic lights and staying on the road — three infractions send the police after you</li>
+    </ul>
+    <h3>Version 128 <span class="date">· 15 August 2026</span></h3>
+    <ul class="changelog">
+        <li>The Save As dialog is now the classic Windows 95 one, matching the Open dialog, and file dialogs now start in your own drive instead of My Computer</li>
+    </ul>
+    <h3>Version 127 <span class="date">· 15 August 2026</span></h3>
+    <ul class="changelog">
+        <li>NoGaOS Cloud: a parent can now connect the computer to a family- or school-run cloud provider from the Control Panel, using a one-time enrollment code</li>
+        <li>Backups can now go to several destinations at once — GitHub repositories and NoGaOS Cloud providers (no account or token needed) — each with its own status</li>
+    </ul>
+
+    <footer>
+        NoGa OS 136. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    document.getElementById('download').addEventListener('click', function () {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: window.nogaosDownloadPath || 'download',
+                title: 'Download NoGa OS',
+                event: true
+            });
+        }
+    });
+</script>
+</body>
+</html>
