@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGa OS</title>
+<meta name="description" content="A virtual desktop for children, with a simple and calm look of its own. Runs as a normal Java program on Linux, Windows, macOS and Raspberry Pi.">
+<meta property="og:title" content="NoGa OS">
+<meta property="og:description" content="A virtual desktop for children, with a simple and calm look of its own.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<style>
+    :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #1b1b1b;
+            --text: #e8e8e8;
+            --muted: #a5a5a5;
+            --border: #3d3d3d;
+            --panel: #262626;
+            --link: #7fb2ec;
+            --accent: #37c2b0;
+            --accent-text: #08211e;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+        }
+    }
+
+    :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    /* Matched to the screenshot's own width, so the image sets the column
+       instead of being squeezed into it. */
+    .wrap { max-width: 800px; margin: 0 auto; }
+
+    .head img { display: block; margin-bottom: 10px; }
+
+    h1 { margin: 0 0 12px; font-size: 28px; }
+
+    h2 { margin: 32px 0 8px; font-size: 19px; }
+
+    p { margin: 0 0 12px; }
+
+    .download { margin: 24px 0 28px; text-align: center; }
+
+    a.button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, filter .12s ease;
+    }
+
+    a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+    a.button:active { transform: translateY(0); }
+
+    a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        a.button { transition: none; }
+        a.button:hover { transform: none; }
+    }
+
+    .download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    /* The screenshot is shown at 1:1 — scaling it to the viewport made the
+       pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+       the page body from scrolling sideways as a whole. */
+    .shot { margin: 0 0 20px; overflow-x: auto; }
+
+    .shot img {
+        display: block;
+        border: 1px solid var(--border);
+        image-rendering: pixelated;
+    }
+
+    h3 { margin: 20px 0 6px; font-size: 16px; }
+
+    h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+    .changelog { margin: 0 0 12px; padding-left: 22px; }
+
+    .changelog li { margin: 0 0 4px; }
+
+    code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    pre {
+        margin: 0 0 12px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    a { color: var(--link); }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGa OS</h1>
+    </div>
+
+    <p>NoGa OS is a virtual operating system for kids: a complete desktop with its own windows, files and apps, running as a single Java program on any computer. It helps kids learn real computer basics in a controlled space: mouse, keyboard, windows, files, and simple educational/play apps. It is intentionally not a real operating system: the host does the low-level work, so all the effort goes into what a kid actually sees and touches. And it is a gateway rather than a destination: a kid outgrows it in a few years and moves on to Windows, macOS or Linux, so NoGa OS keeps to the habits those desktops share, made bigger, fewer and plainer, instead of inventing its own.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/157/nogaos-157.jar" download>Download NoGa OS 157</a>
+        <div class="meta">36 MB · released 19 September 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGa OS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-157.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does. On a Raspberry Pi it can be set to start on boot with no Linux desktop reachable behind it.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 157 <span class="date">· 19 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The Open and Save windows are bigger, with full-size buttons, fields and file rows, and each file shows its own icon</li>
+        <li>Solitaire: an empty column shows the same outlined place as the Ace piles, so it is clear a King can land there; the cards have a slimmer border and stay a little smaller in a big window</li>
+    </ul>
+    <h3>Version 156 <span class="date">· 19 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The Open and Save windows start on your Desktop, so what you save is in plain sight straight away</li>
+        <li>Weather shows where in the world your town is on a small globe lit by the real sun, lists every hour of a day, and spells out the days of the week</li>
+        <li>Jigsaw opens by asking which picture and how many pieces, and offers your own recent pictures beside the bundled ones</li>
+        <li>Finishing a jigsaw is celebrated: the picture becomes whole and the guinea pigs bring a frame for it, which you can keep as a file</li>
+    </ul>
+    <h3>Version 155 <span class="date">· 19 September 2026</span></h3>
+    <ul class="changelog">
+        <li>Paint: the Magnifier zooms in with a left click and out with a right click, and the pointers for zooming, filling, picking a colour and selecting now match the desktop&#x27;s own</li>
+        <li>The &quot;What&#x27;s new&quot; window shows its text edge to edge like Notepad, without a Close button</li>
+        <li>Jigsaw: &quot;Make a jigsaw&quot; from a picture&#x27;s right-click menu no longer shows another puzzle behind the size question, and pieces stay roughly square on tall or wide pictures; pieces that fit can be joined on the table and then move as one</li>
+        <li>Solitaire: winning sets off the classic cascade of bouncing cards, and an empty stock shows the ring that means &quot;click to start over&quot;</li>
+        <li>Desktop and File Explorer icons no longer shift a pixel when selected; icons under an odd-width name now sit exactly centred</li>
+        <li>The right-click &quot;New&quot; menu only offers files a kid can start from scratch (a text file, a WordPad document, a drawing), no longer videos or settings files, and names each by what it is with its icon (&quot;Text file (.txt)&quot;) rather than by the app; the App Manager&#x27;s file types carry the same names</li>
+        <li>The right-click &quot;Open with&quot; submenu only appears when there is a real choice, not for a file whose one app is the one a double-click already opens</li>
+    </ul>
+    <h3>Version 154 <span class="date">· 18 September 2026</span></h3>
+    <ul class="changelog">
+        <li>New &quot;What&#x27;s new&quot; applet in the Control Panel with the release notes of every version, and a &quot;What&#x27;s new&quot; entry in every app&#x27;s Help menu</li>
+        <li>Right-clicking a file shows an &quot;Open with&quot; submenu: a photo can be edited in Paint or turned into a jigsaw</li>
+    </ul>
+    <h3>Version 153 <span class="date">· 18 September 2026</span></h3>
+    <ul class="changelog">
+        <li>Tabs in the Internet Browser, with the bookmarks beside them and a View menu to hide either</li>
+        <li>New Jigsaw puzzle game, with pictures of your own</li>
+        <li>New Bricks game: build a little house brick by brick in 3D from step-by-step instructions</li>
+        <li>New Weather app: today, the week ahead and every hour of a day, for your town</li>
+        <li>WordPad zoom in and out buttons beside the zoom list</li>
+    </ul>
+    <h3>Version 152 <span class="date">· 16 September 2026</span></h3>
+    <ul class="changelog">
+        <li>Toolbar buttons are now grouped, so related ones sit together as a block, and WordPad&#x27;s zoom box no longer cuts off &quot;100%&quot;</li>
+    </ul>
+    <h3>Version 151 <span class="date">· 16 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The File Explorer&#x27;s toolbar buttons are now plain icons that light up when you point at them, like the web browser&#x27;s</li>
+        <li>WordPad&#x27;s toolbar buttons are bigger and easier to hit</li>
+    </ul>
+    <h3>Version 150 <span class="date">· 16 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The web browser&#x27;s toolbar buttons and bookmarks are now plain icons that light up when you point at them</li>
+        <li>Fixed site icons that came out too big, stretching the bookmarks row and the window title</li>
+    </ul>
+    <h3>Version 149 <span class="date">· 16 September 2026</span></h3>
+    <ul class="changelog">
+        <li>Internet Browser: pressing Tab in a web form moves to the next field on the page instead of jumping to the browser&#x27;s toolbar</li>
+        <li>Internet Browser: links, forms and scripts that open a new window (which used to do nothing when clicked) now open in the same window</li>
+        <li>Internet Browser: a &quot;Developer tools&quot; item in the admin-only Tools menu opens Chromium&#x27;s DevTools in a desktop window</li>
+    </ul>
+    <h3>Version 148 <span class="date">· 13 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The print dialog is laid out like a real one, with a big page preview and labelled boxes for printer, orientation, copies, picture size, colour and pages, each choice shown with a small picture</li>
+        <li>Paint: every drawing tool has one size and its button shows what it draws in your colour; a thicker pencil, filled and empty shapes as their own buttons, and the pointer shows the exact mark you are about to make; the picture sits centred and can be resized from any side or corner</li>
+        <li>The speaker in the taskbar shows the volume level, a click opens a slider with a mute box, and every icon next to the clock has a right-click menu</li>
+        <li>Windows always open inside the screen, so the title bar is never hidden on a small display</li>
+    </ul>
+
+    <footer>
+        NoGa OS 157. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    document.getElementById('download').addEventListener('click', function () {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: window.nogaosDownloadPath || 'download',
+                title: 'Download NoGa OS',
+                event: true
+            });
+        }
+    });
+</script>
+</body>
+</html>
