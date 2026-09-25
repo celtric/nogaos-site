@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGa OS</title>
+<meta name="description" content="A virtual desktop for children, with a simple and calm look of its own. Runs as a normal Java program on Linux, Windows, macOS and Raspberry Pi.">
+<meta property="og:title" content="NoGa OS">
+<meta property="og:description" content="A virtual desktop for children, with a simple and calm look of its own.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<style>
+    :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #1b1b1b;
+            --text: #e8e8e8;
+            --muted: #a5a5a5;
+            --border: #3d3d3d;
+            --panel: #262626;
+            --link: #7fb2ec;
+            --accent: #37c2b0;
+            --accent-text: #08211e;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+        }
+    }
+
+    :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    /* Matched to the screenshot's own width, so the image sets the column
+       instead of being squeezed into it. */
+    .wrap { max-width: 800px; margin: 0 auto; }
+
+    .head img { display: block; margin-bottom: 10px; }
+
+    h1 { margin: 0 0 12px; font-size: 28px; }
+
+    h2 { margin: 32px 0 8px; font-size: 19px; }
+
+    p { margin: 0 0 12px; }
+
+    .download { margin: 24px 0 28px; text-align: center; }
+
+    a.button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, filter .12s ease;
+    }
+
+    a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+    a.button:active { transform: translateY(0); }
+
+    a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        a.button { transition: none; }
+        a.button:hover { transform: none; }
+    }
+
+    .download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    /* The screenshot is shown at 1:1 — scaling it to the viewport made the
+       pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+       the page body from scrolling sideways as a whole. */
+    .shot { margin: 0 0 20px; overflow-x: auto; }
+
+    .shot img {
+        display: block;
+        border: 1px solid var(--border);
+        image-rendering: pixelated;
+    }
+
+    h3 { margin: 20px 0 6px; font-size: 16px; }
+
+    h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+    .changelog { margin: 0 0 12px; padding-left: 22px; }
+
+    .changelog li { margin: 0 0 4px; }
+
+    code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    pre {
+        margin: 0 0 12px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    a { color: var(--link); }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGa OS</h1>
+    </div>
+
+    <p>NoGa OS is a virtual operating system for kids: a complete desktop with its own windows, files and apps, running as a single Java program on any computer. It helps kids learn real computer basics in a controlled space: mouse, keyboard, windows, files, and simple educational/play apps. It is intentionally not a real operating system: the host does the low-level work, so all the effort goes into what a kid actually sees and touches. And it is a gateway rather than a destination: a kid outgrows it in a few years and moves on to Windows, macOS or Linux, so NoGa OS keeps to the habits those desktops share, made bigger, fewer and plainer, instead of inventing its own.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/174/nogaos-174.jar" download>Download NoGa OS 174</a>
+        <div class="meta">35 MB · released 25 September 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGa OS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-174.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does.</p>
+
+    <h2>A computer of their own</h2>
+    <p>An old laptop or a Raspberry Pi can become a NoGa OS computer: it powers on straight into NoGa OS, with no login prompt and no Linux desktop reachable behind it. Install Debian (the small "netinst" image, with no desktop environment selected) or Raspberry Pi OS Lite, log in, and run:</p>
+    <pre><code>wget -qO install-kiosk.sh https://celtric.github.io/nogaos-site/install-kiosk.sh && sudo bash install-kiosk.sh</code></pre>
+    <p>It installs Java and everything else NoGa OS needs, downloads the latest version and sets the computer to start it on boot. It is <a href="install-kiosk.sh">a plain script you can read first</a>, and running it again is safe.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 174 <span class="date">· 25 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The **Users** applet&#x27;s forms no longer close on a missing name or password and complain afterwards: **OK** stays greyed out until the fields are filled, and a name another user already has is refused while the form stays open with what was typed</li>
+        <li>The toolbars wear the classic explorer icons of the late nineties instead of the Tango set: the File Explorer, the Open and Save dialogs, the Internet Browser, the PDF Viewer and Paint&#x27;s undo and redo, with the Media Player&#x27;s play, pause, stop and seek buttons from the Media Player of the same era</li>
+        <li>In the setup wizards, **Back** and **Next** sit together as one group of buttons</li>
+    </ul>
+    <h3>Version 172 <span class="date">· 24 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The **Italian** app becomes **Languages**: the same picture cards and quiz, now in Italian and in English, read by the computer&#x27;s voices. It replaces English Words, and the Drums app is gone too</li>
+        <li>Voices are managed from a new **Voices** tab in the Sounds settings, where a grown-up installs, removes, picks and tries the voices for Catalan, English and Italian; an app that needs a missing voice now points there instead of asking to download it</li>
+        <li>Dragging a Control Panel applet onto the desktop or into a folder makes a shortcut to it</li>
+    </ul>
+    <h3>Version 171 <span class="date">· 24 September 2026</span></h3>
+    <ul class="changelog">
+        <li>New **PDF Viewer** app: every page on one scrolling strip with small pages beside it to jump to, zoom in the corner of the status bar, and printing. PDF files open there now instead of in the browser</li>
+        <li>New **Drums** app: a drum set seen from the drummer&#x27;s seat to hit with the mouse or the keyboard, and a beat grid to make rhythms with</li>
+        <li>New **English Words** app: a word in Catalan and then in English, one after another in the background, run from its icon next to the clock. The first app to talk asks a grown-up to download the computer&#x27;s voices, which any app can then use to read aloud</li>
+        <li>Internet Browser: find in page (Ctrl+F), zoom in round steps from the corner of the status bar, a Downloads button on the toolbar, and folders on the bookmarks bar</li>
+        <li>Media Player rebuilt: one bar of controls under the picture, a &quot;now playing&quot; line instead of a black square for a sound file, and a real fullscreen for videos that hides the taskbar too (Escape brings it back); the browser&#x27;s video fullscreen does the same</li>
+        <li>Desktop polish: pictures open in the picture viewer with Paint under **Open with**, a long file name breaks across its two lines instead of ending in dots, the network icon next to the clock is crossed while the computer is off the network, and Notepad no longer freezes when pointed at a PDF</li>
+    </ul>
+    <h3>Version 170 <span class="date">· 23 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The Start menu gains **My Computer** at the top and a **Learning** folder inside Programs for Geography, Globe, Italian, Letter Rain, Math and Typing, leaving Games to the games</li>
+        <li>Desktop and File Explorer polish: a new file lands beside where you right-clicked, icons never cover a window, a folder about to take a drop lights up like a selected icon, the pointer turns into a crossed circle over anything that refuses a drop, emptying the Recycle Bin plays its sound, tables show all their columns without clipping, and **Open with** always offers Notepad</li>
+        <li>Printers: the Add Printer wizard and the printer sheet use the regular button and page sizes, a printer added under a name already in use gets a number, and the tray&#x27;s printing panel is a table</li>
+        <li>The battery next to the clock shows its level as a cell that turns orange and then red as it runs down, with the percentage beside it; the speaker shows the volume level too, and is crossed out while muted</li>
+        <li>**Internet Browser**: an **Add bookmark** pill instead of a bare &quot;Add&quot;, tabs and bookmarks that can be hidden one at a time, and no more developer tools</li>
+        <li>The kiosk installer&#x27;s dialogs answer the keyboard when the script is piped into `sudo bash`, and it now keeps the Linux console reachable unless asked to lock it away</li>
+    </ul>
+    <h3>Version 169 <span class="date">· 23 September 2026</span></h3>
+    <ul class="changelog">
+        <li>New **Power** applet in the Control Panel: plugged in or on battery, the level, time left, watts charging or draining, battery health, and a chart of the last 24 hours; a battery icon next to the clock on computers that have one</li>
+        <li>The icons next to the clock now open a small panel on a click, with the volume slider, the network and its neighbours, the battery, the last things printed or today&#x27;s date, and a button to the full window; right-click menus are gone, the log viewer and audit trail moved to the Control Panel, one network icon replaces the two there were, and a printer icon appears once something has been printed, saying whether it went through</li>
+        <li>The **Wi-Fi** applet becomes **Network**, open to everyone: a status tab, the Wi-Fi tab for administrators, and a list of the other NoGa OS computers on the network</li>
+        <li>Printers: the default one wears a check badge instead of a &quot;(default)&quot; suffix, and every printer has a **Properties** sheet</li>
+        <li>The **Theme** applet offers two fonts, the default and Comic Neue, instead of ten near-identical ones</li>
+        <li>**Calculator** shows the whole sum as you type it; **Solitaire** waits for a click before turning an uncovered card and previews and remembers your deck; **Paint** opens an empty picture file made from the New menu as a blank canvas instead of an error</li>
+        <li>The **Internet Browser** no longer freezes the whole desktop when its icon is clicked again while it is starting</li>
+        <li>**Updates** finds the download even when GitHub lists a release without its files; the **Language** applet gets OK and Cancel like every settings window; the **Sounds** applet loses its balance slider</li>
+    </ul>
+    <h3>Version 168 <span class="date">· 23 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The computer installer now goes through its steps one screen at a time, says what each one changes, and lets you skip any of them, such as keeping the Linux console reachable</li>
+        <li>Turning off or restarting the computer is quicker: the goodbye message appears straight away, with the shutdown sound, instead of after a made-up progress bar</li>
+        <li>In Catalan the Recycle Bin is now called **Paperera**, so its name fits under the desktop icon</li>
+        <li>The computer&#x27;s network address, needed to reach a locked-down kiosk from another computer, is shown in the Control Panel&#x27;s **System** applet and when hovering the tray&#x27;s network icon</li>
+        <li>Starting up shows the teal start-up screen from the first moment, with no grey flash before the login screen</li>
+    </ul>
+    <h3>Version 167 <span class="date">· 22 September 2026</span></h3>
+    <ul class="changelog">
+        <li>The computer installer now sets up the camera, and hands over the Wi-Fi that Debian&#x27;s own installer configured, so the **Camera** and **Wi-Fi** applets work straight away instead of saying there is no camera or no network</li>
+    </ul>
+    <h3>Version 166 <span class="date">· 22 September 2026</span></h3>
+    <ul class="changelog">
+        <li>Faster, simpler start-up: the guinea pigs and the NoGa OS name appear the moment the computer starts NoGa OS, with the start-up sound, and stay only while it is really loading; the black screen before it and the extra loading screen after it are gone, and the version now shows in a corner of the login screen</li>
+    </ul>
+    <h3>Version 165 <span class="date">· 22 September 2026</span></h3>
+    <ul class="changelog">
+        <li>Dragging files to or from the **Shared** drive or a USB stick now works (it moves them, with the **Moving...** window), the folder you are about to drop into lights up, and it blinks once the files are inside</li>
+        <li>New files on a full desktop go to the next free place in the following column instead of piling up at the bottom of the first one</li>
+        <li>The read-only **Z:** drive that showed the computer&#x27;s own files in My Computer is gone: on a computer running only NoGa OS it had nothing useful to show, and a kid&#x27;s machine has no business browsing the system disk</li>
+    </ul>
+
+    <footer>
+        NoGa OS 174. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    document.getElementById('download').addEventListener('click', function () {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: window.nogaosDownloadPath || 'download',
+                title: 'Download NoGa OS',
+                event: true
+            });
+        }
+    });
+</script>
+</body>
+</html>
