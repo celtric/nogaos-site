@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGa OS</title>
+<meta name="description" content="A virtual desktop for children, with a simple and calm look of its own. Runs as a normal Java program on Linux, Windows, macOS and Raspberry Pi.">
+<meta property="og:title" content="NoGa OS">
+<meta property="og:description" content="A virtual desktop for children, with a simple and calm look of its own.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<style>
+    :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #1b1b1b;
+            --text: #e8e8e8;
+            --muted: #a5a5a5;
+            --border: #3d3d3d;
+            --panel: #262626;
+            --link: #7fb2ec;
+            --accent: #37c2b0;
+            --accent-text: #08211e;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+        }
+    }
+
+    :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    /* Matched to the screenshot's own width, so the image sets the column
+       instead of being squeezed into it. */
+    .wrap { max-width: 800px; margin: 0 auto; }
+
+    .head img { display: block; margin-bottom: 10px; }
+
+    h1 { margin: 0 0 12px; font-size: 28px; }
+
+    h2 { margin: 32px 0 8px; font-size: 19px; }
+
+    p { margin: 0 0 12px; }
+
+    .download { margin: 24px 0 28px; text-align: center; }
+
+    a.button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, filter .12s ease;
+    }
+
+    a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+    a.button:active { transform: translateY(0); }
+
+    a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        a.button { transition: none; }
+        a.button:hover { transform: none; }
+    }
+
+    .download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    /* The screenshot is shown at 1:1 — scaling it to the viewport made the
+       pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+       the page body from scrolling sideways as a whole. */
+    .shot { margin: 0 0 20px; overflow-x: auto; }
+
+    .shot img {
+        display: block;
+        border: 1px solid var(--border);
+        image-rendering: pixelated;
+    }
+
+    h3 { margin: 20px 0 6px; font-size: 16px; }
+
+    h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+    .changelog { margin: 0 0 12px; padding-left: 22px; }
+
+    .changelog li { margin: 0 0 4px; }
+
+    code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    pre {
+        margin: 0 0 12px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    a { color: var(--link); }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGa OS</h1>
+    </div>
+
+    <p>NoGa OS is a virtual operating system for kids: a complete desktop with its own windows, files and apps. It helps kids learn real computer basics in a controlled space: mouse, keyboard, windows, files, and simple educational/play apps. It is intentionally not a real operating system: the host does the low-level work, so all the effort goes into what a kid actually sees and touches. And it is a gateway rather than a destination: a kid outgrows it in a few years and moves on to Windows, macOS or Linux, so NoGa OS keeps to the habits those desktops share, made bigger, fewer and plainer, instead of inventing its own.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/190/nogaos-190.jar" download>Download NoGa OS 190</a>
+        <div class="meta">35 MB · released 2 October 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGa OS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-190.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does.</p>
+
+    <h2>A computer of their own</h2>
+    <p>An old laptop or a Raspberry Pi can become a NoGa OS computer: it powers on straight into NoGa OS, with no login prompt and no Linux desktop reachable behind it. Install Debian (the small "netinst" image, with no desktop environment selected) or Raspberry Pi OS Lite, log in, and run:</p>
+    <pre><code>wget -qO install-kiosk.sh https://celtric.github.io/nogaos-site/install-kiosk.sh && sudo bash install-kiosk.sh</code></pre>
+    <p>It installs Java and everything else NoGa OS needs, downloads the latest version and sets the computer to start it on boot. It is <a href="install-kiosk.sh">a plain script you can read first</a>, and running it again is safe.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 190 <span class="date">· 2 October 2026</span></h3>
+    <ul class="changelog">
+        <li>Sessions with other computers no longer leave a copy of the chat and the drawing in the kid&#x27;s files; copies saved before stay where they are</li>
+        <li>**Restart** after an update now brings NoGa OS back on its own on computers that start it as a service (the setup described in the help), instead of leaving the screen empty</li>
+    </ul>
+    <h3>Version 188 <span class="date">· 1 October 2026</span></h3>
+    <ul class="changelog">
+        <li>**Display Properties**: the wallpaper list shows only the wallpapers that come with NoGa OS, and **Browse...** picks any picture of your own; the &quot;Flying logo&quot; and &quot;Your name&quot; screen savers are now one **Flying text** saver that shows whatever the kid types, or their name</li>
+        <li>Screenshots always go to the same **Screenshots** folder whatever the language, and pictures already saved under its Catalan name are moved there; in Catalan it is still shown as **Captures de pantalla**</li>
+        <li>Drop-down lists look cleaner, and file **Properties** show long names, places and dates in full, over more lines when needed</li>
+    </ul>
+    <h3>Version 186 <span class="date">· 30 September 2026</span></h3>
+    <ul class="changelog">
+        <li>NoGaOS Cloud networks: a provider can group computers into networks such as &quot;Home&quot; or a school class, and each network appears in **My Computer** next to **Local Network**, showing who is logged in right now on its other computers. The privacy notice now covers being put in networks, so computers already connected to a provider ask for it to be accepted once more</li>
+    </ul>
+    <h3>Version 185 <span class="date">· 30 September 2026</span></h3>
+    <ul class="changelog">
+        <li>New **Storage** applet in the Control Panel (the same page as the C: drive&#x27;s **Properties**) showing how much space NoGa OS takes and how much can be freed, with **Disk Cleanup** to remove old temporary files and empty the Recycle Bin, and for administrators old logs and previous versions</li>
+        <li>Simpler **Updates**: it checks as soon as it opens and shows one message and one button for the next step, with the new version&#x27;s notes; **Restart now** asks about unsaved work first, and old downloaded versions are removed automatically, keeping one to go back to</li>
+        <li>The web browser keeps at most 256 MB of pages and pictures on the disk, adjustable in **Internet Settings**</li>
+    </ul>
+    <h3>Version 184 <span class="date">· 30 September 2026</span></h3>
+    <ul class="changelog">
+        <li>NoGaOS Cloud asks before it shares: when a computer joins a provider, it first shows in plain words what it will send and the provider&#x27;s privacy notice, and joins only once a parent or the person responsible for the computer accepts it; each computer can be offered something different (a school computer can report in without backups), and if the provider&#x27;s notice or offer changes, the computer waits for the new one to be accepted. The applet is now called **Cloud**</li>
+        <li>Text copied outside NoGa OS (a code copied in a browser, for example) can be pasted inside it, and text copied inside can be pasted outside; files, images and passwords stay inside</li>
+    </ul>
+    <h3>Version 181 <span class="date">· 30 September 2026</span></h3>
+    <ul class="changelog">
+        <li>NoGaOS Cloud: enroll a computer with the family&#x27;s provider (the project runs one at cloud.nogaos.org) and it reports in every 15 minutes, so a parent sees from anywhere, in the provider&#x27;s web page, whether it is on, which version it runs and when it last backed up; switch on **Backup** in Control Panel → **NoGaOS Cloud** and every snapshot is copied there with its whole history, with a progress bar and **Cancel**, and each file can be browsed and downloaded from the web page; files over 25 MB (adjustable) are left out, and nothing already backed up is ever deleted</li>
+        <li>GitHub backups are gone: NoGa OS no longer pushes to GitHub repositories, and the saved token is removed from the computer — the repositories themselves keep their history. To keep backing up, enroll the computer with a NoGaOS Cloud provider and switch **Backup** on there; the **Backup** applet is now a tab of **NoGaOS Cloud**</li>
+        <li>The Performance Profiler moved into the System Monitor, as a tab for administrators</li>
+    </ul>
+
+    <footer>
+        NoGa OS 190. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    document.getElementById('download').addEventListener('click', function () {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: window.nogaosDownloadPath || 'download',
+                title: 'Download NoGa OS',
+                event: true
+            });
+        }
+    });
+</script>
+</body>
+</html>
