@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGa OS</title>
+<meta name="description" content="A virtual desktop for children, with a simple and calm look of its own. Runs as a normal Java program on Linux, Windows, macOS and Raspberry Pi.">
+<meta property="og:title" content="NoGa OS">
+<meta property="og:description" content="A virtual desktop for children, with a simple and calm look of its own.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<style>
+    :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #1b1b1b;
+            --text: #e8e8e8;
+            --muted: #a5a5a5;
+            --border: #3d3d3d;
+            --panel: #262626;
+            --link: #7fb2ec;
+            --accent: #37c2b0;
+            --accent-text: #08211e;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+        }
+    }
+
+    :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    /* Matched to the screenshot's own width, so the image sets the column
+       instead of being squeezed into it. */
+    .wrap { max-width: 800px; margin: 0 auto; }
+
+    .head img { display: block; margin-bottom: 10px; }
+
+    h1 { margin: 0 0 12px; font-size: 28px; }
+
+    h2 { margin: 32px 0 8px; font-size: 19px; }
+
+    p { margin: 0 0 12px; }
+
+    .download { margin: 24px 0 28px; text-align: center; }
+
+    a.button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, filter .12s ease;
+    }
+
+    a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+    a.button:active { transform: translateY(0); }
+
+    a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        a.button { transition: none; }
+        a.button:hover { transform: none; }
+    }
+
+    .download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    /* The screenshot is shown at 1:1 — scaling it to the viewport made the
+       pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+       the page body from scrolling sideways as a whole. */
+    .shot { margin: 0 0 20px; overflow-x: auto; }
+
+    .shot img {
+        display: block;
+        border: 1px solid var(--border);
+        image-rendering: pixelated;
+    }
+
+    h3 { margin: 20px 0 6px; font-size: 16px; }
+
+    h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+    .changelog { margin: 0 0 12px; padding-left: 22px; }
+
+    .changelog li { margin: 0 0 4px; }
+
+    code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    pre {
+        margin: 0 0 12px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    a { color: var(--link); }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGa OS</h1>
+    </div>
+
+    <p>NoGa OS is a virtual operating system for kids: a complete desktop with its own windows, files and apps. It helps kids learn real computer basics in a controlled space: mouse, keyboard, windows, files, and simple educational/play apps. It is intentionally not a real operating system: the host does the low-level work, so all the effort goes into what a kid actually sees and touches. And it is a gateway rather than a destination: a kid outgrows it in a few years and moves on to Windows, macOS or Linux, so NoGa OS keeps to the habits those desktops share, made bigger, fewer and plainer, instead of inventing its own.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/208/nogaos-208.jar" download>Download NoGa OS 208</a>
+        <div class="meta">40 MB · released 23 October 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGa OS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-208.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does.</p>
+
+    <h2>A computer of their own</h2>
+    <p>An old laptop or a Raspberry Pi can become a NoGa OS computer: it powers on straight into NoGa OS, with no login prompt and no Linux desktop reachable behind it. Install Debian (the small "netinst" image, with no desktop environment selected) or Raspberry Pi OS Lite, log in, and run:</p>
+    <pre><code>wget -qO install-kiosk.sh https://celtric.github.io/nogaos-site/install-kiosk.sh && sudo bash install-kiosk.sh</code></pre>
+    <p>It installs Java and everything else NoGa OS needs, downloads the latest version and sets the computer to start it on boot. It is <a href="install-kiosk.sh">a plain script you can read first</a>, and running it again is safe.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 208 <span class="date">· 23 October 2026</span></h3>
+    <ul class="changelog">
+        <li>Opening the File Explorer or the Control Panel no longer freezes the desktop for half a minute after something was copied in the browser</li>
+    </ul>
+    <h3>Version 207 <span class="date">· 23 October 2026</span></h3>
+    <ul class="changelog">
+        <li>Every published version is signed, and NoGa OS checks the signature before installing an update, by hand or automatically; the kiosk installer checks it too, and a refused update is in the audit trail</li>
+        <li>One click on the taskbar clock opens a calendar and a clock: the days with an event marked <strong>Important</strong> in Calendar carry a dot, a double-click on a day opens Calendar, and the Date/Time applet shows the same calendar and a redrawn clock with all twelve numbers, with a new <strong>Clock</strong> tab to choose the 24-hour clock and the first day of the week for the whole computer</li>
+        <li>The System Monitor&#x27;s new <strong>Apps</strong> tab shows what each running app costs and can end one; a notice confirms every screenshot and opens its folder; the Control Panel opens at once; tray panels no longer carry a button (a double-click on the icon still opens the window); Chess, City Driver, Mazes and Space Slingshot pause while minimised</li>
+    </ul>
+    <h3>Version 206 <span class="date">· 22 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>JClic</strong> now plays with JClic&#x27;s own player, so every kind of activity works; the player is downloaded once per computer after a setup page asks. A project from <strong>My activities</strong> can be dragged to the desktop or a folder as a shortcut that shows its picture, and <strong>Help</strong> has JClic&#x27;s own About and the open project&#x27;s</li>
+        <li>Shortcuts: right-click one for <strong>Open file location</strong>; a shortcut to a read-only file no longer shows a lock; the Properties sheet never cuts a line and breaks a long path at its folders</li>
+        <li>The browser&#x27;s own data and the camera tool now live under <code>C:\Temp</code> with the other downloaded components, which the explorer lists for everyone (read-only); Disk Cleanup leaves the pictogram pack alone</li>
+    </ul>
+    <h3>Version 205 <span class="date">· 21 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Networks</strong>: <strong>My Computer</strong> lists <strong>Local Network</strong> and your cloud network apart again, each under its own name and icon, with the people connected in the cloud network and its <strong>Shared files</strong> folder inside its own folder; a session opened from Local Network goes over the Wi-Fi and one opened from the cloud network goes through the provider, so it is always plain which way it went</li>
+        <li><strong>Wi-Fi from the tray</strong>: the network icon&#x27;s panel shows the connection in a coloured box and, for a parent, the Wi-Fi networks in range; one click joins one, asking for the password when the computer does not know it</li>
+        <li><strong>Printers</strong> is now a Control Panel applet (also under Start → Settings) that lists the printers with <strong>Add Printer</strong>, <strong>Open Queue</strong>, <strong>Set As Default</strong>, <strong>Print Test Page</strong>, <strong>Remove</strong> and <strong>Properties</strong>, and keeps the page limit on its <strong>Limits</strong> tab; the Printers folder in My Computer and the Printing applet are gone</li>
+        <li><strong>Internet Browser</strong>: the page gets the status bar&#x27;s row back, with what loads or the link under the pointer in a small corner chip; <strong>View</strong> has a <strong>Zoom</strong> menu with the levels and <strong>Full screen</strong> (F11); the page&#x27;s scrollbars stand beside the page like Notepad&#x27;s; a middle-click or Ctrl+click opens a link in a tab behind the current one; and the tabs are quieter, with the close cross only on the tab under the pointer</li>
+        <li><strong>Licence</strong>: NoGa OS is published under the MIT licence, shown on the Licenses applet&#x27;s new <strong>NoGa OS</strong> tab and accepted on a page of the setup wizard; double-clicking a row of the other tabs shows it in full</li>
+        <li><strong>Worksheets</strong>: a ding for a right answer and a chord for a mistake, and a <strong>True or false</strong> page chooses whether to show a picture, its answer set by clicking the right button in the editor; <strong>Hangman</strong> shows the spaces, hyphens and apostrophes of a phrase from the start; the <strong>Keyboard</strong> applet wears a keyboard icon</li>
+    </ul>
+    <h3>Version 204 <span class="date">· 20 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>New Quiz app</strong>: ten questions drawn from a file of pairs a parent writes in Notepad (who plays where, capitals, words and their meaning), four answers each and a score at the end, with a capitals quiz to start from; <strong>Hangman</strong> opens a word file a parent prepared from its theme screen and remembers the last five</li>
+        <li><strong>Printing</strong>: a limit on the pages of one print job, five unless a parent changes it in the new Control Panel <strong>Printing</strong> applet; a job over it is refused and noted in the audit trail</li>
+        <li><strong>Setup and Control Panel</strong>: the setup wizard asks whether the computer should download new versions by itself, ticked by default; a new <strong>Keyboard</strong> applet shows which keys are being pressed; check boxes wear the classic tick</li>
+        <li><strong>Small fixes</strong>: the screensaver no longer appears right after the computer wakes up, <code>Enter</code> opens the selected file or folder, a file with no extension can still be opened with Notepad, the Wi-Fi password box is ready to type in, the picture viewer keeps its window size while arrowing through a folder, <strong>Weather</strong>&#x27;s globe turns faster in a big window, and <strong>Worksheets</strong> names a calendar&#x27;s month in the worksheet&#x27;s language and keeps playing an author&#x27;s recording after its words were changed</li>
+    </ul>
+    <h3>Version 203 <span class="date">· 18 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Weather</strong>: before you choose a town, and from the new <strong>World map</strong> button, it shows a world map with the weather in towns everywhere, which zooms in down to the villages around you; the sky behind the forecast is now a plain colour</li>
+        <li><strong>Worksheets</strong>: every page that asks for something writes what to do at the top and says it as the page opens, and again when the kid clicks it; in the <strong>Worksheet Editor</strong> the author can retype it and record her own voice saying it</li>
+        <li><strong>Start menu and files</strong>: apps installed from the App Manager sit in a folder named after where they came from, your <strong>Start Menu</strong> folder now shows the menu&#x27;s apps too as locked shortcuts, and the menu, the explorer and the open and save dialogs all sort names the same way, accents included; a padlock&#x27;s meaning is explained in <strong>Properties</strong>; on the Raspberry Pi a dragged icon follows the pointer, and the picture viewer gets a taskbar button, fits each picture and answers the arrow keys</li>
+        <li>The <strong>Terminal</strong> app is gone, and with it the commands other apps added to it</li>
+    </ul>
+    <h3>Version 202 <span class="date">· 14 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Worksheets</strong>: the <strong>Triangles</strong> page is gone, and a worksheet that still has one opens with a page saying so in its place; cards show a crisp edge that thickens while pressed, and a clearer ring on a right answer; in the <strong>Worksheet Editor</strong> the kind of page is named in the page&#x27;s corner and the strip the cheer will cover is shaded, so the room left for the exercise is plain to see</li>
+    </ul>
+    <h3>Version 201 <span class="date">· 13 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>First-run setup</strong> leaves a new computer ready to hand over: it asks the language first, offers to download the Internet browser, the worksheet pictograms and the reading voices in one go, and checks the microphone level</li>
+        <li><strong>Worksheets</strong>: marks beside the page number show which pages were got right, with a summary on the last page (nothing is kept once the worksheet is closed), and the arrow to the next page waits for the answer; pages no longer show their kind&#x27;s pictogram and name, and the cheer has the top of the page to itself, covering nothing; a worksheet can be written in the joined-up school hand Betània Patmos, in capitals or as written, and its author can record her own &quot;Well done!&quot;; pictures can be built from a value (a clock from its time, coins from an amount, a fraction, a ruler, a calendar and more); every right answer is cheered the same way, <strong>Picture parts</strong> plays one way only, and the hidden explanations of Reading and True or false are gone</li>
+        <li><strong>Shape Editor</strong>: right-click a zone in the list to rename or delete it</li>
+    </ul>
+    <h3>Version 200 <span class="date">· 13 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Worksheets</strong>: twelve new kinds of page in the <strong>Words</strong> tab: reading comprehension, fill the gap, true or false, odd one out, rhymes, syllables, sort them, in order, puzzle, word search, crossword (reading comprehension and true or false can explain the answer once it is right) and <strong>Picture parts</strong>, where the kid finds or labels the parts of a picture marked in the new Shape Editor; a right answer shows a band over the page&#x27;s heading with the cheer and a strip that fills before the page turns, and pages no longer read their heading aloud as they show; Pairs and Memory, and the three listen-and-choose pages, are now one kind each with modes the editor switches between from a row above the page, and the speaker under a word in the editor shows whether a recording or the computer&#x27;s voice will be heard and changes it on click</li>
+        <li><strong>New Shape Editor app</strong>: marks the parts of a picture, boxes, ellipses and polygons each with a name, or names the shapes an SVG drawing such as a map already has, with wheel zoom for small pictures, and saves a <code>.forma</code> file the Worksheet Editor turns into a Picture parts page</li>
+        <li><strong>Paint</strong>: the toolbox shows the classic Windows 95 Paint icons again instead of a preview of each tool&#x27;s stroke</li>
+        <li><strong>Voice Recorder</strong>: one bar does it all: while you record, the take draws its sound as it grows, red where it was too loud; once stopped, the same bar plays it back like the Media Player&#x27;s, with <strong>Play</strong> turning into <strong>Pause</strong>, <strong>Space</strong> and <strong>Enter</strong> pressing it too, and a click on the bar jumping there</li>
+        <li><strong>Media Player</strong>: the progress bar shows the shape of the sound, so you can see where a song or a recording is loud, quiet or silent before you play it, the playhead glides instead of stepping once a second, and there is one play/pause button and no <strong>Stop</strong> (<strong>Space</strong> pauses too; click the start of the bar to go back to the beginning)</li>
+    </ul>
+    <h3>Version 199 <span class="date">· 11 October 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Worksheets</strong>: the page arrows sit beside the page as big classic arrows, blue under the pointer, and only when there is a page to go to</li>
+        <li><strong>Worksheet Editor</strong>: every sound row says who will speak, <strong>Robot voice</strong> or <strong>Human voice</strong> with the recording&#x27;s length, and shows a pulsing red dot and the time while it records; a kind of page that always says the same sentence shares one recording across all its pages; a new worksheet asks its title, language and whether pages are read aloud in one go; Worksheets and the editor wear new icons</li>
+    </ul>
+
+    <footer>
+        NoGa OS 208. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    document.getElementById('download').addEventListener('click', function () {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: window.nogaosDownloadPath || 'download',
+                title: 'Download NoGa OS',
+                event: true
+            });
+        }
+    });
+</script>
+</body>
+</html>
