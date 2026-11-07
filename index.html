@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS</title>
+<meta name="description" content="Smooth a child's way into computers: a virtual desktop for children, with a simple and calm look of its own. Runs as a normal Java program on Linux, Windows, macOS and Raspberry Pi.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers: a virtual desktop for children, with a simple and calm look of its own.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<style>
+    :root {
+        color-scheme: light dark;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: #1b1b1b;
+            --text: #e8e8e8;
+            --muted: #a5a5a5;
+            --border: #3d3d3d;
+            --panel: #262626;
+            --link: #7fb2ec;
+            --accent: #37c2b0;
+            --accent-text: #08211e;
+            --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+        }
+    }
+
+    :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #fff;
+        --text: #1a1a1a;
+        --muted: #555;
+        --border: #ccc;
+        --panel: #f4f4f4;
+        --link: #00479d;
+        --accent: #0f6b62;
+        --accent-text: #fff;
+        --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+    }
+
+    :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 32px 20px 64px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    /* Matched to the screenshot's own width, so the image sets the column
+       instead of being squeezed into it. */
+    .wrap { max-width: 800px; margin: 0 auto; }
+
+    .head img { display: block; margin-bottom: 10px; }
+
+    h1 { margin: 0 0 12px; font-size: 28px; }
+
+    h2 { margin: 32px 0 8px; font-size: 19px; }
+
+    p { margin: 0 0 12px; }
+
+    .download { margin: 24px 0 28px; text-align: center; }
+
+    a.button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 17px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .12s ease, filter .12s ease;
+    }
+
+    a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+    a.button:active { transform: translateY(0); }
+
+    a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+        a.button { transition: none; }
+        a.button:hover { transform: none; }
+    }
+
+    .download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    /* The screenshot is shown at 1:1 — scaling it to the viewport made the
+       pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+       the page body from scrolling sideways as a whole. */
+    .shot { margin: 0 0 20px; overflow-x: auto; }
+
+    .shot img {
+        display: block;
+        border: 1px solid var(--border);
+        image-rendering: pixelated;
+    }
+
+    h3 { margin: 20px 0 6px; font-size: 16px; }
+
+    h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+    .changelog { margin: 0 0 12px; padding-left: 22px; }
+
+    .changelog li { margin: 0 0 4px; }
+
+    code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    pre {
+        margin: 0 0 12px;
+        padding: 10px 12px;
+        overflow-x: auto;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 15px;
+    }
+
+    a { color: var(--link); }
+
+    footer {
+        margin-top: 40px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+        font-size: 14px;
+        color: var(--muted);
+    }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGaOS</h1>
+    </div>
+
+    <p><strong>Smooth a child's way into computers.</strong></p>
+
+    <blockquote>
+        <p>"If you wish to make an apple pie from scratch, you must first invent the universe." — Carl Sagan</p>
+        <p>For a child to open a simple app and draw, there must first be a desktop, and everything around it that makes it safe and whole. NoGaOS is that universe, built so the pie is the easy part.</p>
+    </blockquote>
+
+    <p>NoGaOS is a virtual operating system for kids: a complete desktop with its own windows, files and apps. It helps kids learn real computer basics in a controlled space: mouse, keyboard, windows, files, and simple educational/play apps. It is intentionally not a real operating system: the host does the low-level work, so all the effort goes into what a kid actually sees and touches. And it is a gateway rather than a destination: a kid outgrows it in a few years and moves on to Windows, macOS or Linux, so NoGaOS keeps to the habits those desktops share, made bigger, fewer and plainer, instead of inventing its own.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/243/nogaos-243.jar" download>Download NoGaOS 243</a>
+        <div class="meta">57 MB · released 7 November 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGaOS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-243.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does.</p>
+
+    <h2>A computer of their own</h2>
+    <p>An old laptop or a Raspberry Pi can become a NoGaOS computer: it powers on straight into NoGaOS, with no login prompt and no Linux desktop reachable behind it. Install Debian (the small "netinst" image, with no desktop environment selected) or Raspberry Pi OS Lite, log in, and run:</p>
+    <pre><code>wget -qO install-kiosk.sh https://celtric.github.io/nogaos-site/install-kiosk.sh && sudo bash install-kiosk.sh</code></pre>
+    <p>It installs Java and everything else NoGaOS needs, downloads the latest version and sets the computer to start it on boot. It is <a href="install-kiosk.sh">a plain script you can read first</a>, and running it again is safe.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 243 <span class="date">· 7 November 2026</span></h3>
+    <ul class="changelog">
+        <li>A computer following a policy that names a NoGaOS release updates to that release and no further: the Updates applet checks against it, says so when the computer is already there or past it, and downloads nothing newer.</li>
+        <li>Wi-Fi switches off and on, from the Network applet&#x27;s <strong>Wi-Fi</strong> tab and from the tray&#x27;s network panel, and the tray says when it is off.</li>
+        <li>Managed computers: the settings a policy decides carry a short notice with the policy icon naming the <strong>Managed policies</strong> applet (the Policy applet renamed), which shows the policy followed rather than who signed it; the Policy Editor opens on the policy too, and saving with an identity other than the signer&#x27;s asks before writing a new policy.</li>
+        <li>Internet Browser: when there is no connection the error page is Chromium&#x27;s dinosaur game, also reachable by typing <code>chrome://dino</code>, and error pages look like NoGaOS windows.</li>
+        <li>Fixes: buttons end flush with the fields above them in every applet; tab strips keep a margin on both sides; a switch that is off limits looks it; a network folder left idle for a quarter of a minute is no longer dropped and reconnected.</li>
+    </ul>
+    <h3>Version 242 <span class="date">· 6 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Control Panel reshuffled: Usage Statistics and the Audit trail are tabs of the System Monitor, which also gained a <strong>Screen freezes</strong> tab with the whole stack of each freeze a double-click away and a blue colour on its Timeline for long runs that are the host&#x27;s or the network&#x27;s doing; the Personal Web Server is a tab of the Network applet; the Storage applet is gone, the C: drive&#x27;s Properties being the same sheet; the UI Gallery is on tabs; and the Fleet applet is now <strong>Policy</strong>, under a server certificate icon, without its Computers tab.</li>
+        <li>The Network applet&#x27;s <strong>Neighbours</strong> tab asks every NoGaOS computer on the network who is logged in, which version it runs and which policy it follows, with the rest in the computer&#x27;s properties; computers no longer write reports beside a policy file. The policy this computer follows carries a mark on its file icon, and a policy or identity file opens from Explorer only, the applet&#x27;s Open buttons being gone.</li>
+        <li>Fixes: the App Manager opens again (it crashed since 239); a computer no longer boots to a bare screen when a clipboard read raced the login screen; a window opened alone lands in the centre; the browser&#x27;s picture menu opens a picture in a new tab and copies its address; the web server&#x27;s home page is plain; checking an identity&#x27;s password answers with a tick or a cross.</li>
+    </ul>
+    <h3>Version 241 <span class="date">· 6 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Managed computers: a policy is now signed with an <strong>identity</strong>, a file of its own made from the Fleet applet with a password and a few seconds of moving the mouse, kept wherever its owner wants and never on the computer; a double-click on it shows its fingerprint and checks the password. The Policy Editor opens for reading, with a <strong>History</strong> tab of every revision and what changed, and edits only after <strong>Edit</strong>; every policy carries that history inside, signed, so a computer refuses a rewritten one. Policies and identities from version 239 must be made again.</li>
+        <li>Desktop: Alt+Tab switches between windows; a window opened on its own lands in the centre again; the Control Panel opens wide enough for its icons; a long message in a dialog wraps instead of stretching it; the screen saver no longer flashes before a laptop sleeps when both are set to the same time.</li>
+        <li>Personal Web Server: the folder to show is remembered per user and starts as a <code>www</code> folder with a home page, made at the first <strong>Start</strong>, with a button that opens it in the explorer; the share scanner of the Networks applet lists this computer too when it shares files.</li>
+    </ul>
+    <h3>Version 239 <span class="date">· 6 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Network folders can be written: files are saved, copied, renamed, moved and deleted on the shared folder from any app or the explorer, with no Recycle Bin there, and each change is in the audit trail; an administrator can also choose which users see each folder.</li>
+        <li>A Google Drive folder can be added as a network folder from the Networks applet, signing in with a Google account through the grown-up&#x27;s own OAuth client; the whole Drive, one of its folders or a folder shared with the account shows in My Computer as a network drive, crossed out while the computer is offline.</li>
+        <li>New <strong>Personal Web Server</strong> applet in the Control Panel: an administrator picks a folder and starts it, and every computer on the network reads the folder&#x27;s pages and files in a browser at this computer&#x27;s address, with a tray icon while it runs; it stops at logout and never starts by itself.</li>
+    </ul>
+    <h3>Version 238 <span class="date">· 5 November 2026</span></h3>
+    <ul class="changelog">
+        <li>NoGaOS Cloud is gone: the computer no longer connects to a provider, so there are no cloud networks, shared files, cloud mail or backups to a provider any more, and mail goes only between the users of this computer. The Control Panel&#x27;s <strong>Cloud</strong> applet now explains what it was and why it was removed; a computer that was enrolled forgets it on its first start, and the snapshot size limit that lived in the applet is set in the backup settings file (see the Snapshots help topic).</li>
+    </ul>
+    <h3>Version 237 <span class="date">· 5 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Network folders: an administrator adds a Windows shared folder from the Networks applet, with a wizard that finds the computers nearby and what they share; it shows read-only in Local Network on every login, is found again when its computer changes address, and the explorer says &quot;Connecting…&quot; instead of freezing while it is reached.</li>
+        <li>Media Player plays a film from a network folder or a USB drive where it is, without copying it first.</li>
+        <li>Local Network lists only the computers that are online now; the greyed-out ones met before are gone.</li>
+    </ul>
+    <h3>Version 235 <span class="date">· 4 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Internet Browser: sites that scroll inside a page area instead of the whole page show one scrollbar, and it scrolls them.</li>
+    </ul>
+    <h3>Version 234 <span class="date">· 4 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Energy: a laptop whose battery firmware gives no numbers at all says its level is unknown, instead of showing a fixed 15% that never moved while it charged.</li>
+    </ul>
+
+    <footer>
+        NoGaOS 243. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    document.getElementById('download').addEventListener('click', function () {
+        if (window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({
+                path: window.nogaosDownloadPath || 'download',
+                title: 'Download NoGaOS',
+                event: true
+            });
+        }
+    });
+</script>
+</body>
+</html>
