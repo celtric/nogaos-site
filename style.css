@@ -1,0 +1,160 @@
+:root {
+    color-scheme: light dark;
+    --bg: #fff;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #ccc;
+    --panel: #f4f4f4;
+    --link: #00479d;
+    --accent: #0f6b62;
+    --accent-text: #fff;
+    --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #1b1b1b;
+        --text: #e8e8e8;
+        --muted: #a5a5a5;
+        --border: #3d3d3d;
+        --panel: #262626;
+        --link: #7fb2ec;
+        --accent: #37c2b0;
+        --accent-text: #08211e;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+}
+
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #fff;
+    --text: #1a1a1a;
+    --muted: #555;
+    --border: #ccc;
+    --panel: #f4f4f4;
+    --link: #00479d;
+    --accent: #0f6b62;
+    --accent-text: #fff;
+    --shadow: 0 1px 2px rgba(20, 18, 14, .05), 0 8px 24px rgba(20, 18, 14, .06);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #1b1b1b;
+    --text: #e8e8e8;
+    --muted: #a5a5a5;
+    --border: #3d3d3d;
+    --panel: #262626;
+    --link: #7fb2ec;
+    --accent: #37c2b0;
+    --accent-text: #08211e;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    padding: 32px 20px 64px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+/* Matched to the screenshot's own width, so the image sets the column
+   instead of being squeezed into it. */
+.wrap { max-width: 800px; margin: 0 auto; }
+
+.head img { display: block; margin-bottom: 10px; }
+
+h1 { margin: 0 0 12px; font-size: 28px; }
+
+h2 { margin: 32px 0 8px; font-size: 19px; }
+
+p { margin: 0 0 12px; }
+
+.download { margin: 24px 0 28px; text-align: center; }
+
+a.button {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform .12s ease, filter .12s ease;
+}
+
+a.button:hover { filter: brightness(1.07); transform: translateY(-1px); }
+
+a.button:active { transform: translateY(0); }
+
+a.button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+    a.button { transition: none; }
+    a.button:hover { transform: none; }
+}
+
+.download .meta { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+/* The screenshot is shown at 1:1 — scaling it to the viewport made the
+   pixel art shimmer. On a narrow screen this scrolls instead, which keeps
+   the page body from scrolling sideways as a whole. */
+.shot { margin: 0 0 20px; overflow-x: auto; }
+
+.shot img {
+    display: block;
+    border: 1px solid var(--border);
+    image-rendering: pixelated;
+}
+
+h3 { margin: 20px 0 6px; font-size: 16px; }
+
+h3 .date { font-weight: normal; font-size: 14px; color: var(--muted); }
+
+ul { margin: 0 0 12px; padding-left: 22px; }
+
+li { margin: 0 0 4px; }
+
+code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+}
+
+pre {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    font-family: "Courier New", Courier, monospace;
+    font-size: 15px;
+}
+
+a { color: var(--link); }
+
+footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* The menu is a plain line of links, like a hand-written page's: no boxes,
+   no bar, the current page in bold instead of a link to itself. */
+.menu { margin: 0 0 20px; }
+
+.menu ul { margin: 0; padding: 0; list-style: none; }
+
+.menu li { display: inline; margin: 0; }
+
+.menu li + li::before { content: " · "; color: var(--muted); }
+
+.menu [aria-current="page"] { font-weight: bold; color: inherit; text-decoration: none; }

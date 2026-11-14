@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS · Changelog</title>
+<meta name="description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGaOS</h1>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="changelog.html" aria-current="page">Changelog</a></li>
+            <li><a href="releases/">Releases</a></li>
+            <li><a href="development.html">Development</a></li>
+        </ul>
+    </nav>
+
+    <p>What changed in each recent release of NoGaOS, newest first. The <a href="index.html">home page</a> always offers the latest one.</p>
+
+    <h2>Changelog</h2>
+    <h3>Version 254 <span class="date">· 14 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Internet Browser: a page no longer shows two scrollbars, its own beside the browser&#x27;s, when it loaded faster than the browser&#x27;s scrollbar could take over.</li>
+        <li>In Catalan, progress and status lines now read the way apps talk (Baixant..., Cercant xarxes..., Connexió perduda) instead of the report-like S&#x27;està baixant or S&#x27;ha perdut.</li>
+    </ul>
+    <h3>Version 253 <span class="date">· 13 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Every app catalog is now added after the same warning, whoever publishes it: NoGaOS names no store as its own, its author&#x27;s experimental apps included.</li>
+    </ul>
+    <h3>Version 252 <span class="date">· 13 November 2026</span></h3>
+    <ul class="changelog">
+        <li>Apps from catalogs are built against this release anew: an app built for an earlier release stops opening until its catalog publishes the rebuilt version, which a computer with automatic updates fetches within the hour.</li>
+    </ul>
+    <h3>Version 251 <span class="date">· 13 November 2026</span></h3>
+    <ul class="changelog">
+        <li>The tray&#x27;s panels for serial ports, USB devices, programs and the internet show one line per app, its icon, name, data rate and the last minute&#x27;s graph, under a title that fits.</li>
+        <li>Media Player: the progress bar draws the sound of a WAV, AIFF or AU file played from where it lives, where it stayed flat.</li>
+    </ul>
+    <h3>Version 250 <span class="date">· 12 November 2026</span></h3>
+    <ul class="changelog">
+        <li>For app developers: each release now publishes the desktop and its test kit beside the API, in test scope, so an app written outside NoGaOS can run the same booted-desktop screenshot tests the bundled apps have; <code>apps/README.md</code> has the recipe.</li>
+        <li><strong>Lighter on a Raspberry Pi.</strong> While nobody is at the desktop the network and system figures are read far less often and the volume not at all; the taskbar clock ticks once a minute; a wobble in the Wi-Fi signal no longer makes My Computer and the tray redraw; a desktop background is prepared off the screen thread, once, at the screen&#x27;s size and the right way up, so a phone photo stands upright and takes a fraction of the memory it did; installing an app from a catalog no longer freezes the desktop; and the distribution dropped a 5 MB graphics library the browser never used, so it unpacks nothing at boot.</li>
+        <li><strong>Every download is in the audit trail.</strong> Voices, the video tool and pictogram catalogs now appear as internet requests like app installs and updates already did, and an automatic update no longer holds the whole new version in memory while it checks it.</li>
+        <li>Smaller changes: the Open and Save dialogs show the same padlocks and custom folder icons as the Explorer; a managed policy can be revised indefinitely without its followers stopping, since only the last ten revisions keep their settings; the session window&#x27;s log records traffic only while it is shown; a long value on a printer&#x27;s or a computer&#x27;s properties sheet wraps instead of being cut; the icon picker offers the icons in <code>C:\Icons</code> only. For app developers: a handful of API members nothing called were removed (<code>InternetAccess.probe</code>, <code>FsPath.fromDisplayPath</code> and the deprecated network names, <code>Apps.setClipboard</code> and <code>fileContextMenu</code>, <code>Pictograms.ensureInstalled</code> and <code>isInstalled</code>, <code>AppStorage.setPrivate</code> and <code>isPrivate</code>, <code>WebView.setOnZoomChange</code> and <code>showDevTools</code>), and <code>Html.escape</code>, <code>Documents.onChange</code> and <code>RubberBand</code> joined the API.</li>
+    </ul>
+    <h3>Version 249 <span class="date">· 11 November 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Apps can reach more of what is plugged in, when an administrator says so.</strong> An app can ask to run programs already installed on the computer, each written out as an exact command line that an administrator approves in <strong>Applications</strong> and that stops being approved if an update changes it; and to talk to USB HID devices such as a thermometer or a game controller, never a keyboard, a mouse or a touch screen. The audit trail records each program and each device, and now says how long a program, a device or a serial port was in use and how much data moved.</li>
+        <li><strong>The tray shows which apps are using what.</strong> An icon appears for serial ports, USB devices, programs and the internet from the moment an open app first uses one until that app is closed; clicking it lists the apps and how busy each has been over the last minute.</li>
+        <li>Smaller changes: <strong>Applications</strong> now lists every installed app, also one a catalog does not offer or whose catalog was taken off the list (under <strong>Other apps</strong>), so it can be seen, given or denied permissions and removed; a catalog&#x27;s tab no longer shows its address for a moment before its name; screen brightness is set from the Display applet and the laptop&#x27;s keys, no longer from the battery&#x27;s panel in the tray; the volume and brightness sliders lost the sunken box around them.</li>
+    </ul>
+    <h3>Version 248 <span class="date">· 11 November 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>The camera is off until an administrator allows it</strong>, in the <strong>Camera</strong> applet, and that includes computers that already had NoGaOS: after this update a local-network session shows no picture until someone allows the camera there. Once allowed, each session asks the person at the computer whether the other side may see them; saying no keeps the session going without a picture, and <strong>View → Turn camera on</strong> asks again. The audit trail records the setting, each answer and each use turned away.</li>
+        <li><strong>Screen brightness</strong> on a laptop: a slider in the battery&#x27;s flyout and on a new <strong>Screen</strong> tab of the Display applet, which never lets the screen go black.</li>
+        <li><strong>A laptop&#x27;s volume, brightness and Wi-Fi keys work</strong> on a Linux kiosk, and the Keyboard applet&#x27;s new <strong>Special keys</strong> tab lets an administrator give each action another key.</li>
+    </ul>
+    <h3>Version 247 <span class="date">· 11 November 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Devices on a serial port.</strong> An administrator can let an app read a device plugged into the computer, such as a GPS receiver, a micro:bit or an Arduino, with a new permission in <strong>Applications</strong>; each time an app opens or closes one is in the audit trail, never what the device said. On Linux only, and the kiosk installer prepares the computer for it. A new <strong>Location</strong> applet in the Control Panel explains that NoGaOS has no location service and why, and lists the apps that may read a plugged-in device.</li>
+        <li>Fixes: an app from outside NoGaOS that customises a text box or a tree no longer crashes when its window opens.</li>
+    </ul>
+    <h3>Version 246 <span class="date">· 10 November 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>Every version of every file is kept.</strong> The computer&#x27;s history records each save, move, rename and deletion on a user&#x27;s drive or the Shared drive the moment it happens, keeping the file&#x27;s bytes once however many saves share them and sharing the current version&#x27;s bytes with the file itself where the disk allows, so a drawing deleted and gone from the Recycle Bin is still there and keeping history costs room only for what changed; a pass a minute after boot and every six hours picks up anything written another way. It replaces the git snapshots taken every five minutes, which missed what came and went between two of them and rescanned the whole drive each time; the old snapshot folder stays, readable with git, until an administrator removes it from Disk Cleanup. An administrator can <strong>Erase from history</strong> one file for good, with a reason, from the explorer&#x27;s right-click.</li>
+        <li><strong>What takes space…</strong>, on the storage sheet and on a drive&#x27;s or folder&#x27;s right-click, shows what fills it as a list and a treemap, coloured by kind; administrators also see NoGaOS&#x27;s own files and the file history, and can erase a file or a folder&#x27;s worth of history from there. The storage sheet shows the file history as a line of its own.</li>
+        <li><strong>Backup</strong> is a new Control Panel applet: the history is copied every hour to a network folder of your choice, each computer under its own folder, resumable, with <strong>Back up now</strong> and <strong>Verify</strong>. The copies are plain files, not encrypted, and the applet says so.</li>
+        <li>Fixes: photos from a phone show upright in thumbnails and the picture viewer; the identity file&#x27;s password takes longer to guess; the network discovery no longer resets itself whenever the Wi-Fi signal moves.</li>
+    </ul>
+    <h3>Version 245 <span class="date">· 9 November 2026</span></h3>
+    <ul class="changelog">
+        <li><strong>External components</strong>, a new Control Panel applet for everything NoGaOS downloads after it is installed: the browser engine, the ARASAAC pictograms, the speech engine and its voices, and the camera tool on Windows, each a row with its size, ticked to install and unticked to remove, with the space it needs and has, a description and <strong>Details…</strong> for the pictograms&#x27; languages and the voices. It replaces the ARASAAC applet, the first-run setup offers the same list, the Camera applet and the Voices tab point to it, and the browser engine can be removed at last. Removals are in the audit trail.</li>
+        <li><strong>Managed computers</strong>: a <strong>History</strong> tab shows every time the policy was applied on this computer, part by part, with the value before and after or why it failed, and which apps were turned on, off or installed; the release a policy names is now the one to run, older or newer, never below the point where a release changed how files are stored; and the Updates applet lists the <strong>Previous versions</strong> kept on the computer with a <strong>Go back</strong> for each. The <strong>Settings</strong> menu of the Start menu is the Control Panel plus the applets you pin there from the Control Panel&#x27;s right-click, Printers to begin with; the Neighbours tab lists this computer too.</li>
+        <li>Fixes: system sounds no longer keep audio lines open for the whole session, which cost an idle laptop a twentieth of a core and kept the sound card awake; logging in no longer freezes the screen while icons decode, and opening a file from a network folder no longer freezes it while the share answers; the Log Viewer reads on a dark background with each level in its own colour and stays where you scrolled while new lines arrive; the battery tray panel is the Power applet&#x27;s battery tab, live; the volume panel has − and + beside its slider; progress bars fill their height; the Policy Editor&#x27;s internet tab lines up; a browser shortcut opened on a cold start lands on its page, not the home page.</li>
+    </ul>
+
+    <footer>
+        NoGaOS 254. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+</body>
+</html>

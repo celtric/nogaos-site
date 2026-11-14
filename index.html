@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS</title>
+<meta name="description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="mascot.png" alt="" width="128" height="63">
+        <h1>NoGaOS</h1>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="releases/">Releases</a></li>
+            <li><a href="development.html">Development</a></li>
+        </ul>
+    </nav>
+
+    <p>Smooth a child's way into computers. Give them the same experience we had in the 90s.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/254/nogaos-254.jar" download>Download NoGaOS 254</a>
+        <div class="meta">48 MB · released 14 November 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="screenshot.png" alt="The NoGaOS desktop" width="800" height="600">
+    </figure>
+
+    <h2>History</h2>
+    <!-- How NoGaOS came to be. The three paragraphs below are the draft. -->
+    <p>This project started as a burst of nostalgia: I keep very fond memories of my 90s experiences with early computers, and the early Internet, and I wanted my kids to be able to experience the same thing. Today's computers don't feel like that: they're slow (even with faster hardware!), full of things you don't need, and basically overwhelming for a kid. The Internet also doesn't feel the same: full of ads and people trying to sell you something or trick you in some way.</p>
+    <p>I bought a Raspberry Pi 500 for my kids, which included Raspberry Pi OS, and I let them loose. I soon saw that they had trouble with the basics (as expected, it was their first time really using a computer), but there was a mix of essential and accidental complexity. I've been building software for over two decades now, and I like to think I have good taste for UX, so equipped with AI (sorry, this project is written with AI; I don't have the skills to build such a complex system in my free time in a reasonable timeframe) I started a small spike to see if I could do better.</p>
+    <p>After a few days I had something decent. It ran as an app inside Raspberry Pi OS, which created a bit of friction as my kids had two status bars, but everything <em>looked right</em>. Iteration after iteration, the project kept growing. As of today (November 2026), NoGaOS feels like a real OS, and it's starting to be used in a school. We'll see what the future holds.</p>
+
+    <h2>The name and the logo</h2>
+    <!-- The story of the name and of the logo, with photos. -->
+
+    <h2>Screenshots</h2>
+    <!-- More screenshots of the desktop and the apps. -->
+
+    <h2>Screen recording</h2>
+    <!-- A short recording of a kid's session, or of the desktop in use. -->
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-254.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does.</p>
+
+    <h2>A computer of their own</h2>
+    <p>An old laptop or a Raspberry Pi can become a NoGaOS computer: it powers on straight into NoGaOS, with no login prompt and no Linux desktop reachable behind it. Install Debian (the small "netinst" image, with no desktop environment selected) or Raspberry Pi OS Lite, log in, and run:</p>
+    <pre><code>wget -qO install-kiosk.sh https://nogaos.org/install-kiosk.sh && sudo bash install-kiosk.sh</code></pre>
+    <p>It installs Java and everything else NoGaOS needs, downloads the latest version and sets the computer to start it on boot. It is <a href="install-kiosk.sh">a plain script you can read first</a>, and running it again is safe.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <footer>
+        NoGaOS 254. Not affiliated with Microsoft.
+    </footer>
+</div>
+
+
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    var download = document.getElementById('download');
+    if (download) {
+        download.addEventListener('click', function () {
+            if (window.goatcounter && window.goatcounter.count) {
+                window.goatcounter.count({
+                    path: window.nogaosDownloadPath || 'download',
+                    title: 'Download NoGaOS',
+                    event: true
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>
