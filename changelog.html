@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS · Changelog</title>
+<meta name="description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="images/mascot.png" alt="" width="128" height="63">
+        <a class="brand" href="index.html">NoGaOS</a>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="screenshots.html">Screenshots</a></li>
+            <li><a href="changelog.html" aria-current="page">Changelog</a></li>
+            <li><a href="contributing.html">Contributing and support</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="ramblings.html">Ramblings</a></li>
+        </ul>
+    </nav>
+
+    <h1>Changelog</h1>
+
+    <p>What changed in each recent release of NoGaOS, newest first. The <a href="index.html">home page</a> always offers the latest one.</p>
+
+        <h2>Version 262 <span class="date">· 20 November 2026</span></h2>
+    <ul class="changelog">
+        <li>System Monitor: in the <strong>Maps</strong> tab a message lights its whole path in slow motion, arrow after box, and a click on a box shows beside the map what it got and what it did, with its handler&#x27;s code under it, the lines that ran lit, and a button to open the file in the explorer. Hover a box to pause it: the next message stops there, pulsing orange with its contents on show, until you press play. The map viewer gets zoom buttons and more room to pan.</li>
+    </ul>
+    <h2>Version 261 <span class="date">· 19 November 2026</span></h2>
+    <ul class="changelog">
+        <li>System Monitor: a <strong>Maps</strong> tab shows the architecture maps live, every box grey until a message walks it, lit while it is being handled, and a click on a box tells how often it ran and the last message it got.</li>
+        <li>The machine in the open: <code>C:\Architecture</code> holds a map of every part of the system, drawn from its own code, that a double-click opens in a viewer to pan and zoom; <code>C:\Libs</code> lists every library the program is made of under its real name and size, and beside each NoGaOS part a folder with its source code, readable in Notepad.</li>
+    </ul>
+    <h2>Version 260 <span class="date">· 19 November 2026</span></h2>
+    <ul class="changelog">
+        <li>System Monitor: an app&#x27;s CPU and memory figures count the threads the app made itself, not only its background tasks.</li>
+        <li>Internet Browser: the dangerous-site and adult-site lists are loaded while the browser starts, so the first page no longer makes the desktop wait.</li>
+        <li>Backup: a run that could not start, because the network folder did not answer or its history could not be read, is recorded on the Timeline as a failed attempt rather than a skipped run.</li>
+    </ul>
+    <h2>Version 259 <span class="date">· 17 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Apps may bring libraries that make their own threads, pools, timers and futures: instead of refusing the app, NoGaOS makes every such thread the app&#x27;s own, named after it, limited to 64 alive at a time, and ended with the app; the System Monitor and the audit trail count them.</li>
+    </ul>
+    <h2>Version 258 <span class="date">· 17 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Fonts belong to the system: <code>C:\Fonts</code> lists every font, a double-click opens one in the Font Viewer, and WordPad, Worksheets and the Theme applet pick from that one list, each font drawn in its own letters. OpenDyslexic joins for dyslexic readers, Source Serif 4 is the face a new document starts in, and the near-duplicate families (a second plain sans, serif and monospace, a poster face and an arcade pixel face) are gone. An administrator can drop more fonts into the folder; the bundled ones wear a padlock, as the Programs folder now does.</li>
+        <li>Google Drive folders are gone (the choice stays in the wizard, greyed out), and computers on the local network are found by their beacons alone, which is what found them before.</li>
+        <li>Display Properties shows a background on the desktop as soon as it is picked; <strong>OK</strong> keeps it, <strong>Cancel</strong> or closing the window puts the kept one back.</li>
+        <li>Internet Browser: dangerous websites (malware, scams) and adult websites are blocked by bundled lists, two switches beside the ad one in the Internet applet, both on by default, the lists readable as files in <code>C:\Blocklists</code>; a website shortcut&#x27;s <strong>Website</strong> tab now chooses how the window opens (normal, maximised or full screen), which menus it keeps (all, only Back and Forward, or none) and whether it may leave the link&#x27;s domain. The applet&#x27;s temporary-files size control is gone for now; the 256 MB default applies.</li>
+        <li>Notepad opens files up to 4 MB, where a megabyte was the limit.</li>
+        <li>WordPad: selected text keeps its colour under a lighter highlight, so a colour change shows at once; the zoom buttons are no longer grey.</li>
+    </ul>
+    <h2>Version 257 <span class="date">· 16 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Network folders: a Windows computer that got a new address after a reboot is found again, since a folder now remembers its computer by name and network card and not only by the id Windows renews at every start; the search repeats while the computer is out of reach.</li>
+        <li>File Explorer: the window&#x27;s icon and its taskbar button show the open place (My Computer, Control Panel, the Recycle Bin, a drive, a network folder).</li>
+        <li>Tray: an app that downloaded something during its setup step (JClic&#x27;s player, the browser&#x27;s engine) no longer stays listed under the internet icon after its window is closed.</li>
+    </ul>
+    <h2>Version 255 <span class="date">· 15 November 2026</span></h2>
+    <ul class="changelog">
+        <li>New <strong>Atlas</strong> app: the Earth as a globe to turn and zoom into, becoming a flat map as you get closer, with the grid of parallels and meridians, the big towns, the names of the countries and, closer still, the provinces and villages; it works without internet.</li>
+        <li>Weather: the map wears the look of a paper atlas, with a faint grid that shows which way north is and zoom buttons in its corner; provinces appear when a country fills the window.</li>
+        <li>Start menu: right-click an app and choose <strong>Create desktop shortcut</strong> to put it on the desktop.</li>
+        <li>Little Robot is no longer part of NoGaOS: it continues as <strong>PineBot</strong> in the Pinetons catalog of the author&#x27;s experimental apps.</li>
+    </ul>
+    <h2>Version 254 <span class="date">· 14 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Internet Browser: a page no longer shows two scrollbars, its own beside the browser&#x27;s, when it loaded faster than the browser&#x27;s scrollbar could take over.</li>
+        <li>In Catalan, progress and status lines now read the way apps talk (Baixant..., Cercant xarxes..., Connexió perduda) instead of the report-like S&#x27;està baixant or S&#x27;ha perdut.</li>
+    </ul>
+    <h2>Version 253 <span class="date">· 13 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Every app catalog is now added after the same warning, whoever publishes it: NoGaOS names no store as its own, its author&#x27;s experimental apps included.</li>
+    </ul>
+
+    <footer>
+        NoGaOS 262.
+    </footer>
+</div>
+
+<script>
+        window.nogaosDownloadPath = 'download-262';
+    </script>
+    <script data-goatcounter="https://nogaos.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS</title>
+<meta name="description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="images/mascot.png" alt="" width="128" height="63">
+        <h1>NoGaOS</h1>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="screenshots.html">Screenshots</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="contributing.html">Contributing and support</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="ramblings.html">Ramblings</a></li>
+        </ul>
+    </nav>
+
+    <p>Smooth a child's way into computers. Give them the same experience we had in the 90s.</p>
+
+    <div class="download">
+        <a class="button" id="download" href="https://github.com/celtric/nogaos-site/releases/download/262/nogaos-262.jar" download>Download NoGaOS 262</a>
+        <div class="meta">55 MB · released 20 November 2026 · needs Java 17+<br>Linux, Windows, macOS and Raspberry Pi</div>
+    </div>
+
+    <figure class="shot">
+        <img src="images/screenshot.png" alt="The NoGaOS desktop" width="800" height="600">
+    </figure>
+
+    <h2>Running it</h2>
+    <p>Install Java 17 or newer, then run the downloaded file:</p>
+    <pre><code>java -jar nogaos-262.jar</code></pre>
+    <p>The first start asks you to create an account. Video and audio playback need VLC installed on the computer; nothing else does.</p>
+
+    <h2>A computer of their own</h2>
+    <p>An old laptop or a Raspberry Pi can become a NoGaOS computer: it powers on straight into NoGaOS, with no login prompt and no Linux desktop reachable behind it. Install Debian (the small "netinst" image, with no desktop environment selected) or Raspberry Pi OS Lite, log in, and run:</p>
+    <pre><code>wget -qO install-kiosk.sh https://nogaos.org/install-kiosk.sh && sudo bash install-kiosk.sh</code></pre>
+    <p>It installs Java and everything else NoGaOS needs, downloads the latest version and sets the computer to start it on boot. It is <a href="install-kiosk.sh">a plain script you can read first</a>, and running it again is safe.</p>
+
+    <h2>Status</h2>
+    <p>This is a personal project, written for my own children and shared in case it is useful to anyone else. It is early and it has rough edges. If you try it, <a href="https://github.com/celtric/nogaos-site/issues">bug reports and comments are welcome</a>.</p>
+
+    <footer>
+        NoGaOS 262.
+    </footer>
+</div>
+
+<script>
+        window.nogaosDownloadPath = 'download-262';
+    </script>
+    <script data-goatcounter="https://nogaos.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
+<script>
+    // Counts the click itself, so downloads can be read against referrer and country.
+    var download = document.getElementById('download');
+    if (download) {
+        download.addEventListener('click', function () {
+            if (window.goatcounter && window.goatcounter.count) {
+                window.goatcounter.count({
+                    path: window.nogaosDownloadPath || 'download',
+                    title: 'Download NoGaOS',
+                    event: true
+                });
+            }
+        });
+    }
+</script>
+</body>
+</html>
