@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS · Ramblings</title>
+<meta name="description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<link rel="stylesheet" href="style.css">
+    <style>
+        h1 {
+            margin-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+            margin: 20px 0 15px;
+            padding-bottom: 4px;
+        }
+        h3 {
+            font-size: 16px;
+        }
+        .notice {
+            background-color: #fffdd3;
+            padding: 10px 12px;
+        }
+        .ai {
+            background-color: #eee;
+            font-style: italic;
+            padding: 12px 15px 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="images/mascot.png" alt="" width="128" height="63">
+        <a class="brand" href="index.html">NoGaOS</a>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="screenshots.html">Screenshots</a></li>
+            <li><a href="changelog.html">Changelog</a></li>
+            <li><a href="contributing.html">Contributing and support</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="ramblings.html" aria-current="page">Ramblings</a></li>
+        </ul>
+    </nav>
+
+    <h1>Ramblings</h1>
+
+    <p class="notice">
+        Thoughts out loud I have while working on this project. No AI, no spellcheck, HTML written by hand. Just raw,
+        stupid thoughts, like the good ol' days.
+    </p>
+
+    <h2>2026-11-18</h2>
+
+    <p>A long-standing issue I've had over the years is how to model processes. Over time I've settled on a combination
+        of CQRS building blocks and some other stuff I've learned from smart colleagues or come up by myself. But once a
+        process gets complex enough, I inevitably fall in the same situation of: how can I reason about this? How can
+        this scale so a year from now, with all the changes and complexity we'll accumulate, this grows nicely and we
+        keep it readable?</p>
+
+    <p>I have some solutions in code, but now that all code is written with AI, imho visual aid is more needed than
+        ever. Multiple people have tried to solve it in different ways (BPMN, etc.), but they all feel way more complex
+        than they need to be (I guess by design; that's the reason why I hate frameworks like Spring: they need to be so
+        generic so to cater for such a wide range of scenarios that they inevitably bloat).</p>
+
+    <p>Over the years I've tried to generate diagrams deterministically (and statically) from code. Here's
+        the latest iteration that shows a feature that NoGaOS ships (a recreational local web server):</p>
+
+    <p><a href="images/ramblings/2026-11-18-webserver.png" target="_blank">
+            <img src="images/ramblings/2026-11-18-webserver.png"
+                 alt="NoGaOS recreational web server inner workings diagram"
+                 title="Click to open in a new window" /></a></p>
+
+    <p>Following the "glass box" approach of the OS, I plan on showing this inside NoGaOS, with live messages being
+        shown as they move though the diagrams and things like modifying messages to see live their impact, replay error
+        scenarios, etc.</p>
+
+    <h2>2026-11-17</h2>
+
+    <p>I had an interesting conversation yesterday with a person that is going to try NoGaOS with some kids. I told her
+        that we should be preparing some "basic competences" guide for kids to learn the basics: folders, files, etc.
+        She said she didn't find that useful, as today "everything is in the cloud". My visceral reaction was "I could
+        not disagree any harder", but at the same time I knew there was a high degree of observational truth in that
+        statement. In part, that's what NoGaOS is fighting against: accepting defeat and giving all our data to large
+        corporations, and losing touch with our own machines.</p>
+
+    <p>I've had a lot of thoughts after that interaction, but the main takeaways right now are:</p>
+
+    <ul>
+        <li>This project will continue local-first, using the Internet to augment, not replace. I think they're wrong.</li>
+        <li>The more we go up in the abstraction layer (specially now with AI), the more detached we become with how things
+            work. That builds dependence. NoGaOS is in a great position to fight against that, and give the few kids
+            that want to dig deeper the ability to do so. As such, I'll add a new design principle.</li>
+    </ul>
+
+    <h3>New design principle</h3>
+
+    <p>We'll try to allow inquisitive minds to tinker and learn how their own computer works. We won't hide behind a
+        <em>"it's in the Cloud, only Google knows how that works"</em> and be satisfied by it. As much as possible,
+        we'll try to give ways for the kids to understand, when they save a file, what's going on at different layers of
+        abstraction. I guess very few kids will take this path, but it's not up to us to decide that, they should be
+        given the chance.</p>
+
+    <h2>2026-11-17</h2>
+
+    <p>I'll start a ramblings page for me to think out loud (something I love to do, as some people know). They're
+        thoughts, so by design I'm not accepting any blame when it turns out I'm incredibly wrong.</p>
+
+    <p>Btw, a few days ago I decided that this website would be written manually, so now I'm having a lot of fun writing
+        HTML by hand after years without doing so. No spellcheck or AI either, just like the good old days. I'll also
+        try to use media like <a href="https://en.wikipedia.org/wiki/Pronunciation_of_GIF">GIFs</a> for the nostalgia
+        bonus points.</p>
+
+    <footer>
+        NoGaOS 265.
+    </footer>
+</div>
+
+<script>
+        window.nogaosDownloadPath = 'download-265';
+    </script>
+    <script data-goatcounter="https://nogaos.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NoGaOS · Changelog</title>
+<meta name="description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:title" content="NoGaOS">
+<meta property="og:description" content="Smooth a child's way into computers. Give them the same experience we had in the 90s.">
+<meta property="og:image" content="mascot.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 64x64">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrap">
+    <div class="head">
+        <img src="images/mascot.png" alt="" width="128" height="63">
+        <a class="brand" href="index.html">NoGaOS</a>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="screenshots.html">Screenshots</a></li>
+            <li><a href="changelog.html" aria-current="page">Changelog</a></li>
+            <li><a href="contributing.html">Contributing and support</a></li>
+            <li><a href="history.html">History</a></li>
+            <li><a href="ramblings.html">Ramblings</a></li>
+        </ul>
+    </nav>
+
+    <h1>Changelog</h1>
+
+    <p>What changed in each recent release of NoGaOS, newest first. The <a href="index.html">home page</a> always offers the latest one.</p>
+
+        <h2>Version 265 <span class="date">· 28 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Chess: two kids can play each other by turns at the same keyboard, and a tournament seats 4 or 8 players, each a kid or a named computer player, so a whole family or class can play one knockout together</li>
+        <li><strong>A kiosk or a window.</strong> The Host computer applet&#x27;s new <strong>Mode</strong> tab says how this computer runs NoGaOS: as a kiosk, the whole screen and the only program, which really shuts down, restarts and sleeps the computer; or as a program in a window beside the computer&#x27;s own, maximised, which only closes when asked to shut down and shares the computer&#x27;s clipboard. Only Linux has both: a kiosk, from the installer or home-made, counts as one until a grown-up chooses, a jar started on a Linux desktop opens in a window, and on Windows and macOS a window is the one way. Each thing the mode decides can be set the other way on the same tab, and what Shut down does is also on the Power applet&#x27;s new <strong>Shut down</strong> tab.</li>
+        <li>New <strong>Host computer</strong> applet in the Control Panel, for administrators: the System applet&#x27;s Host tab becomes its <strong>This computer</strong> tab and the Host folders applet its <strong>Mounted folders</strong> tab; the trees of the System applet and of This computer wear the system&#x27;s own icons, one per feature where there is a fitting one; the Mounted folders tab opens at once even while a share&#x27;s computer has stopped answering, where it used to freeze the desktop.</li>
+        <li>Local network: the tray&#x27;s icon when the network is unplugged shows the two computers with a red cross; the Windows share wizard names the computers it finds (asking them the Windows way too), asks for a computer nearby or a typed address as one choice, tries each step on its own page so a computer that does not answer or a wrong password is said where it was typed, lists the folders the computer shares to pick from, puts every caption above its field, and never shows a terminal command, with one exception on purpose: wherever the administrator is needed, in the wizard, in the Mounted folders tab and in the programs installer alike, one <strong>Review and approve</strong> window shows the exact commands above the password field, runs them in place with a bar and each command&#x27;s output unfolding under it, and closes only when the grown-up says so; a password the computer does not take asks again and changes nothing, so a folder is removed only once its setup is undone, and the tab says which share each folder is rather than a mount point; <strong>Connect to a computer</strong> in the explorer&#x27;s tree opens on a double-click or Enter, not on selection.</li>
+    </ul>
+    <h2>Version 264 <span class="date">· 25 November 2026</span></h2>
+    <ul class="changelog">
+        <li>New <strong>Host folders</strong> applet in the Control Panel: a folder the computer underneath already has, a NAS it mounts, a synced folder, a second disk, a share mapped on the computer, is added by its path and shown as a drive of its own in My Computer or as a folder in Local Network, to everyone or to the kids named; NoGaOS never mounts anything itself any more, and its own file-sharing client is gone. On a Linux computer the wizard can still take a Windows share and set it up on the computer once, with the administrator password, the way a grown-up would from a terminal, so the computer keeps it connected from then on, after a restart too and for every program; where NoGaOS can&#x27;t act as the administrator it shows the lines to type instead.</li>
+        <li>NoGaOS installs the programs a feature lacks itself: <strong>Install…</strong> on the Host tab (and the network folders wizard, for the program a Windows share needs) names the missing packages, asks for the computer&#x27;s administrator password when one is needed, installs them with apt and records it in the audit trail; when it has no way to act as the administrator it shows the line to type in a terminal instead.</li>
+        <li>Local Network: opening a computer now shows a <strong>Connect to a computer</strong> window and only its <strong>Connect</strong> button dials; the same window, from the modem icon at the top of the folder, reaches a computer the list does not show by its address, which is then remembered, for the school and guest networks that drop the announcements. The Network applet gains a <strong>Ping</strong> tab and a <strong>Check the network</strong> tab that says, in plain words, why two computers do not see each other and what to do about it.</li>
+        <li>Fixed: the Updates applet no longer shows a placeholder instead of the version and no longer offers the same update again after a restart; a text box inside a scrolling area has one frame, not two.</li>
+    </ul>
+    <h2>Version 263 <span class="date">· 24 November 2026</span></h2>
+    <ul class="changelog">
+        <li>New <strong>Architecture</strong> applet in the Control Panel, taking over the System Monitor&#x27;s maps and the <code>C:\Architecture</code> folder, which is gone: a message lights its whole path in slow motion, a click on a box shows what it got and what it did with its handler&#x27;s code under it, a hovered box can hold the next message until you press play, and every column names the helpers its part keeps. Beside the maps, now filed the way the code is, three pictures of the whole program: every part by size, which part depends on which, and what runs on every thread.</li>
+        <li><strong>Open with</strong> offers Notepad on every file that is not a program, web pages and settings files included.</li>
+        <li>Mahjong: zoom the board with the mouse wheel and drag it around.</li>
+    </ul>
+    <h2>Version 262 <span class="date">· 20 November 2026</span></h2>
+    <ul class="changelog">
+        <li>System Monitor: in the <strong>Maps</strong> tab a message lights its whole path in slow motion, arrow after box, and a click on a box shows beside the map what it got and what it did, with its handler&#x27;s code under it, the lines that ran lit, and a button to open the file in the explorer. Hover a box to pause it: the next message stops there, pulsing orange with its contents on show, until you press play. The map viewer gets zoom buttons and more room to pan.</li>
+    </ul>
+    <h2>Version 261 <span class="date">· 19 November 2026</span></h2>
+    <ul class="changelog">
+        <li>System Monitor: a <strong>Maps</strong> tab shows the architecture maps live, every box grey until a message walks it, lit while it is being handled, and a click on a box tells how often it ran and the last message it got.</li>
+        <li>The machine in the open: <code>C:\Architecture</code> holds a map of every part of the system, drawn from its own code, that a double-click opens in a viewer to pan and zoom; <code>C:\Libs</code> lists every library the program is made of under its real name and size, and beside each NoGaOS part a folder with its source code, readable in Notepad.</li>
+    </ul>
+    <h2>Version 260 <span class="date">· 19 November 2026</span></h2>
+    <ul class="changelog">
+        <li>System Monitor: an app&#x27;s CPU and memory figures count the threads the app made itself, not only its background tasks.</li>
+        <li>Internet Browser: the dangerous-site and adult-site lists are loaded while the browser starts, so the first page no longer makes the desktop wait.</li>
+        <li>Backup: a run that could not start, because the network folder did not answer or its history could not be read, is recorded on the Timeline as a failed attempt rather than a skipped run.</li>
+    </ul>
+    <h2>Version 259 <span class="date">· 17 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Apps may bring libraries that make their own threads, pools, timers and futures: instead of refusing the app, NoGaOS makes every such thread the app&#x27;s own, named after it, limited to 64 alive at a time, and ended with the app; the System Monitor and the audit trail count them.</li>
+    </ul>
+    <h2>Version 258 <span class="date">· 17 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Fonts belong to the system: <code>C:\Fonts</code> lists every font, a double-click opens one in the Font Viewer, and WordPad, Worksheets and the Theme applet pick from that one list, each font drawn in its own letters. OpenDyslexic joins for dyslexic readers, Source Serif 4 is the face a new document starts in, and the near-duplicate families (a second plain sans, serif and monospace, a poster face and an arcade pixel face) are gone. An administrator can drop more fonts into the folder; the bundled ones wear a padlock, as the Programs folder now does.</li>
+        <li>Google Drive folders are gone (the choice stays in the wizard, greyed out), and computers on the local network are found by their beacons alone, which is what found them before.</li>
+        <li>Display Properties shows a background on the desktop as soon as it is picked; <strong>OK</strong> keeps it, <strong>Cancel</strong> or closing the window puts the kept one back.</li>
+        <li>Internet Browser: dangerous websites (malware, scams) and adult websites are blocked by bundled lists, two switches beside the ad one in the Internet applet, both on by default, the lists readable as files in <code>C:\Blocklists</code>; a website shortcut&#x27;s <strong>Website</strong> tab now chooses how the window opens (normal, maximised or full screen), which menus it keeps (all, only Back and Forward, or none) and whether it may leave the link&#x27;s domain. The applet&#x27;s temporary-files size control is gone for now; the 256 MB default applies.</li>
+        <li>Notepad opens files up to 4 MB, where a megabyte was the limit.</li>
+        <li>WordPad: selected text keeps its colour under a lighter highlight, so a colour change shows at once; the zoom buttons are no longer grey.</li>
+    </ul>
+    <h2>Version 257 <span class="date">· 16 November 2026</span></h2>
+    <ul class="changelog">
+        <li>Network folders: a Windows computer that got a new address after a reboot is found again, since a folder now remembers its computer by name and network card and not only by the id Windows renews at every start; the search repeats while the computer is out of reach.</li>
+        <li>File Explorer: the window&#x27;s icon and its taskbar button show the open place (My Computer, Control Panel, the Recycle Bin, a drive, a network folder).</li>
+        <li>Tray: an app that downloaded something during its setup step (JClic&#x27;s player, the browser&#x27;s engine) no longer stays listed under the internet icon after its window is closed.</li>
+    </ul>
+
+    <footer>
+        NoGaOS 265.
+    </footer>
+</div>
+
+<script>
+        window.nogaosDownloadPath = 'download-265';
+    </script>
+    <script data-goatcounter="https://nogaos.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
